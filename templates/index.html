@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Exam Integrity System</title>
+
+    <!-- Our CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- ================= NAVIGATION ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            <div class="logo-icon">🎓</div>
+
+            <div>
+                <h1>AI Exam Integrity</h1>
+                <span>University Examination Management</span>
+            </div>
+        </div>
+
+
+        <nav>
+            <a href="/" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+
+        <div class="nav-buttons">
+
+            <!-- CONNECTED TO LOGIN -->
+            <a href="{{ url_for('login') }}" class="login-btn">Login</a>
+
+            <!-- ALSO CONNECTED TO LOGIN -->
+            <a href="{{ url_for('login') }}" class="start-btn">Get Started →</a>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= HERO SECTION ================= -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                Smart • Secure • Fair
+            </div>
+
+
+            <h2>
+                Ensuring Examination
+                <span>Integrity with AI</span>
+            </h2>
+
+
+            <p>
+                AI-Assisted Examination Integrity Management System
+                helps universities conduct fair, transparent and secure
+                examinations using smart verification, real-time
+                monitoring and AI-powered risk analysis.
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <!-- CONNECTED TO LOGIN -->
+                <a href="{{ url_for('login') }}" class="primary-button">
+                    Login to Dashboard →
+                </a>
+
+                <a href="#features" class="secondary-button">
+                    Learn More
+                </a>
+
+            </div>
+
+
+            <!-- Statistics -->
+
+            <div class="statistics">
+
+                <div class="stat">
+                    <strong>1,240+</strong>
+                    <span>Students</span>
+                </div>
+
+                <div class="stat">
+                    <strong>128</strong>
+                    <span>Examinations</span>
+                </div>
+
+                <div class="stat">
+                    <strong>98%</strong>
+                    <span>Integrity Score</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= HERO VISUAL ================= -->
+
+        <div class="hero-visual">
+
+            <div class="exam-room">
+
+                <div class="screen">
+                    EXAMINATION
+                </div>
+
+                <div class="students">
+
+                    <div class="student">👨‍🎓</div>
+                    <div class="student">👩‍🎓</div>
+                    <div class="student">👨‍🎓</div>
+                    <div class="student">👩‍🎓</div>
+                    <div class="student">👨‍🎓</div>
+                    <div class="student">👩‍🎓</div>
+
+                </div>
+
+                <div class="invigilator">
+                    👨‍🏫
+                </div>
+
+            </div>
+
+
+            <!-- AI Risk Card -->
+
+            <div class="floating-card risk-card">
+
+                <div class="card-icon">🤖</div>
+
+                <div>
+                    <strong>AI Risk Analysis</strong>
+                    <p>Monitoring examination patterns</p>
+
+                    <span class="medium-risk">
+                        Risk Level: Medium
+                    </span>
+                </div>
+
+            </div>
+
+
+            <!-- Exam Status -->
+
+            <div class="floating-card exam-card">
+
+                <div class="card-icon">✓</div>
+
+                <div>
+                    <strong>Exam Status</strong>
+                    <p>COMP 321 • Room LH1</p>
+
+                    <div class="progress">
+                        <div></div>
+                    </div>
+
+                    <small>76 Present • 4 Absent</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FEATURES ================= -->
+
+    <section class="features-section" id="features">
+
+        <div class="section-heading">
+
+            <h2>Powerful Features</h2>
+
+            <p>
+                Everything you need to manage examinations
+                with integrity and confidence.
+            </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+                <div class="feature-icon">👨‍🎓</div>
+
+                <h3>Student Verification</h3>
+
+                <p>
+                    Verify students and maintain accurate
+                    examination records.
+                </p>
+            </div>
+
+
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+
+                <h3>Device Declaration</h3>
+
+                <p>
+                    Record device declarations and
+                    examination device checks.
+                </p>
+            </div>
+
+
+            <div class="feature-card">
+                <div class="feature-icon">🚨</div>
+
+                <h3>Incident Management</h3>
+
+                <p>
+                    Report, track and manage examination
+                    integrity incidents.
+                </p>
+            </div>
+
+
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+
+                <h3>AI Risk Analysis</h3>
+
+                <p>
+                    Analyse examination records and
+                    identify potential integrity risks.
+                </p>
+            </div>
+
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+
+                <h3>Real-time Monitoring</h3>
+
+                <p>
+                    Monitor attendance, examinations
+                    and incidents from one dashboard.
+                </p>
+            </div>
+
+
+            <div class="feature-card">
+                <div class="feature-icon">📄</div>
+
+                <h3>Reports & Analytics</h3>
+
+                <p>
+                    Generate detailed reports for
+                    informed decision-making.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TRUST SECTION ================= -->
+
+    <section class="trust-section" id="about">
+
+        <div>
+            <strong>🔒 Secure & Private</strong>
+            <p>Protect examination information and student data.</p>
+        </div>
+
+        <div>
+            <strong>🛡 Fair & Transparent</strong>
+            <p>Promote fairness throughout the examination process.</p>
+        </div>
+
+        <div>
+            <strong>🤖 AI Assisted</strong>
+            <p>AI supports invigilators while humans make final decisions.</p>
+        </div>
+
+        <div>
+            <strong>🎓 University Focused</strong>
+            <p>Designed specifically for higher education.</p>
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer id="contact">
+
+        <div>
+            <h3>AI Exam Integrity System</h3>
+
+            <p>
+                Smart examination management for
+                secure and transparent universities.
+            </p>
+        </div>
+
+        <div>
+            <p>© 2026 AI Examination Integrity System</p>
+        </div>
+
+    </footer>
+
+
+</body>
+
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Login | AI Exam Integrity System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body class="login-page">
+
+
+    <div class="login-container">
+
+
+        <!-- ==================================
+             LEFT SIDE
+        =================================== -->
+
+        <div class="login-info">
+
+            <div class="login-logo">
+                🎓
+            </div>
+
+
+            <h1>
+                AI Exam<br>
+                <span>Integrity System</span>
+            </h1>
+
+
+            <p>
+                Secure examination management designed
+                to promote integrity, transparency and
+                fairness in university examinations.
+            </p>
+
+
+            <div class="login-features">
+
+                <div>
+                    🔐
+                    <span>Secure Access</span>
+                </div>
+
+
+                <div>
+                    🤖
+                    <span>AI-Assisted Analysis</span>
+                </div>
+
+
+                <div>
+                    📊
+                    <span>Real-Time Examination Management</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==================================
+             RIGHT SIDE
+        =================================== -->
+
+        <div class="login-form-container">
+
+
+            <div class="login-box">
+
+
+                <div class="login-heading">
+
+                    <h2>
+                        Welcome Back
+                    </h2>
+
+                    <p>
+                        Sign in to access your examination dashboard.
+                    </p>
+
+                </div>
+
+
+                <!-- ==================================
+                     ERROR MESSAGE
+                =================================== -->
+
+                {% if error %}
+
+                <div class="login-error">
+
+                    {{ error }}
+
+                </div>
+
+                {% endif %}
+
+
+                <!-- ==================================
+                     LOGIN FORM
+                =================================== -->
+
+                <form action="{{ url_for('login') }}"
+                      method="POST">
+
+
+                    <!-- ROLE -->
+
+                    <div class="form-group">
+
+                        <label for="role">
+                            User Role
+                        </label>
+
+
+                        <select id="role"
+                                name="role"
+                                required>
+
+                            <option value="">
+                                Select your role
+                            </option>
+
+
+                            <option value="admin">
+                                Administrator
+                            </option>
+
+
+                            <option value="invigilator">
+                                Invigilator
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- USERNAME -->
+
+                    <div class="form-group">
+
+                        <label for="username">
+                            Username
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            placeholder="Enter your username"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="form-group">
+
+
+                        <div class="password-label">
+
+                            <label for="password">
+                                Password
+                            </label>
+
+
+                            <a href="#">
+                                Forgot password?
+                            </a>
+
+                        </div>
+
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- REMEMBER ME -->
+
+                    <div class="remember">
+
+                        <label>
+
+                            <input
+                                type="checkbox"
+                                name="remember"
+                            >
+
+                            Remember me
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- LOGIN BUTTON -->
+
+                    <button
+                        type="submit"
+                        class="login-submit">
+
+                        Sign In →
+
+                    </button>
+
+
+                </form>
+
+
+                <!-- BACK HOME -->
+
+                <div class="back-home">
+
+                    <a href="/">
+                        ← Back to Homepage
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

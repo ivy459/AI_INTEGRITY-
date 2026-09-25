@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Admin Dashboard | AI Exam Integrity System
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body class="dashboard-page">
+
+
+    <!-- ==========================================
+         SIDEBAR
+    =========================================== -->
+
+    <aside class="sidebar">
+
+
+        <div class="sidebar-logo">
+
+            <div class="dashboard-logo">
+                🎓
+            </div>
+
+            <div>
+
+                <h2>
+                    AI Exam Integrity
+                </h2>
+
+                <span>
+                    Administration
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="sidebar-nav">
+
+
+            <a href="{{ url_for('admin_dashboard') }}"
+               class="sidebar-link active">
+
+                🏠
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a href="{{ url_for('admin_students') }}"
+               class="sidebar-link">
+
+                👨‍🎓
+
+                <span>
+                    Students
+                </span>
+
+            </a>
+
+
+            <a href="{{ url_for('admin_examinations') }}"
+               class="sidebar-link">
+
+                📝
+
+                <span>
+                    Examinations
+                </span>
+
+            </a>
+
+
+            <a href="{{ url_for('admin_invigilators') }}"
+               class="sidebar-link">
+
+                👨‍🏫
+
+                <span>
+                    Invigilators
+                </span>
+
+            </a>
+
+
+            <a href="{{ url_for('admin_incidents') }}"
+               class="sidebar-link">
+
+                🚨
+
+                <span>
+                    Incidents
+                </span>
+
+            </a>
+
+
+            <a href="{{ url_for('admin_reports') }}"
+               class="sidebar-link">
+
+                📊
+
+                <span>
+                    Reports & Analytics
+                </span>
+
+            </a>
+
+
+            <a href="{{ url_for('admin_ai_analysis') }}"
+               class="sidebar-link">
+
+                🤖
+
+                <span>
+                    AI Analysis
+                </span>
+
+            </a>
+
+
+            <a href="{{ url_for('admin_settings') }}"
+               class="sidebar-link">
+
+                ⚙️
+
+                <span>
+                    System Settings
+                </span>
+
+            </a>
+
+
+        </nav>
+
+
+
+        <!-- LOGOUT -->
+
+        <div class="sidebar-bottom">
+
+            <a href="{{ url_for('logout') }}"
+               class="logout-link">
+
+                🚪
+
+                <span>
+                    Logout
+                </span>
+
+            </a>
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- ==========================================
+         MAIN CONTENT
+    =========================================== -->
+
+    <main class="dashboard-main">
+
+
+        <!-- HEADER -->
+
+        <header class="dashboard-header">
+
+
+            <div>
+
+                <h1>
+                    Admin Dashboard
+                </h1>
+
+                <p>
+                    Welcome back, {{ session["username"] }}.
+                    Here's what's happening today.
+                </p>
+
+            </div>
+
+
+
+            <!-- ADMIN PROFILE -->
+
+            <div class="admin-profile">
+
+
+                <div class="notification">
+                    🔔
+                </div>
+
+
+                <div class="profile-avatar">
+                    A
+                </div>
+
+
+                <div class="profile-info">
+
+                    <strong>
+                        {{ session["username"] }}
+                    </strong>
+
+                    <span>
+                        Administrator
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- ==========================================
+             STATISTICS
+        =========================================== -->
+
+        <section class="dashboard-stats">
+
+
+            <div class="dashboard-stat-card">
+
+                <div class="stat-card-icon">
+                    👨‍🎓
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Students
+                    </span>
+
+                    <strong>
+                        {{ total_students }}
+                    </strong>
+
+                    <small>
+                        Registered students
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="dashboard-stat-card">
+
+                <div class="stat-card-icon">
+                    📝
+                </div>
+
+                <div>
+
+                    <span>
+                        Active Examinations
+                    </span>
+
+                    <strong>
+                        {{ active_examinations }}
+                    </strong>
+
+                    <small>
+                        Currently ongoing
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="dashboard-stat-card">
+
+                <div class="stat-card-icon">
+                    👨‍🏫
+                </div>
+
+                <div>
+
+                    <span>
+                        Invigilators
+                    </span>
+
+                    <strong>
+                        {{ total_invigilators }}
+                    </strong>
+
+                    <small>
+                        Registered invigilators
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="dashboard-stat-card">
+
+                <div class="stat-card-icon">
+                    🚨
+                </div>
+
+                <div>
+
+                    <span>
+                        Open Incidents
+                    </span>
+
+                    <strong>
+                        {{ open_incidents }}
+                    </strong>
+
+                    <small>
+                        Require attention
+                    </small>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ==========================================
+             DASHBOARD GRID
+        =========================================== -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- EXAMINATIONS -->
+
+            <div class="dashboard-panel">
+
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+                            Today's Examinations
+                        </h2>
+
+                        <p>
+                            Examination schedule
+                        </p>
+
+                    </div>
+
+
+                    <a href="{{ url_for('admin_examinations') }}">
+                        View All
+                    </a>
+
+                </div>
+
+
+
+                <div class="exam-list">
+
+
+                    {% if examinations %}
+
+
+                        {% for exam in examinations %}
+
+
+                            <div class="exam-item">
+
+
+                                <div class="exam-time">
+
+                                    {{ exam["start_time"] }}
+
+                                </div>
+
+
+                                <div class="exam-details">
+
+                                    <strong>
+
+                                        {{ exam["course_code"] }}
+
+                                    </strong>
+
+
+                                    <span>
+
+                                        {{ exam["examination_name"] }}
+                                        •
+                                        {{ exam["venue"] }}
+
+                                    </span>
+
+                                </div>
+
+
+                                <div class="exam-status
+                                    {% if exam['status'] == 'ongoing' %}
+                                        ongoing
+                                    {% else %}
+                                        upcoming
+                                    {% endif %}">
+
+                                    {{ exam["status"]|capitalize }}
+
+                                </div>
+
+
+                            </div>
+
+
+                        {% endfor %}
+
+
+                    {% else %}
+
+
+                        <div class="exam-item">
+
+                            <div class="exam-details">
+
+                                <strong>
+                                    No examinations found
+                                </strong>
+
+                                <span>
+                                    No examination records available.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                    {% endif %}
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- AI MONITORING -->
+
+            <div class="dashboard-panel">
+
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+                            AI Integrity Monitoring
+                        </h2>
+
+                        <p>
+                            Current examination risk overview
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="risk-score">
+
+                    <div class="score-circle">
+
+                        <strong>
+                            94%
+                        </strong>
+
+                        <span>
+                            Integrity
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="risk-summary">
+
+
+                    <div>
+
+                        <span>
+                            Low Risk
+                        </span>
+
+                        <strong>
+                            86%
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Medium Risk
+                        </span>
+
+                        <strong>
+                            10%
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            High Risk
+                        </span>
+
+                        <strong>
+                            4%
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ==========================================
+             RECENT INCIDENTS
+        =========================================== -->
+
+        <section class="dashboard-panel incidents-panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Recent Incidents
+                    </h2>
+
+                    <p>
+                        Latest examination integrity reports
+                    </p>
+
+                </div>
+
+
+                <a href="{{ url_for('admin_incidents') }}">
+                    View All
+                </a>
+
+            </div>
+
+
+
+            <div class="incident-table">
+
+
+                <div class="table-header">
+
+                    <span>
+                        Student
+                    </span>
+
+                    <span>
+                        Examination
+                    </span>
+
+                    <span>
+                        Incident
+                    </span>
+
+                    <span>
+                        Severity
+                    </span>
+
+                    <span>
+                        Status
+                    </span>
+
+                </div>
+
+
+
+                {% if incidents %}
+
+
+                    {% for incident in incidents %}
+
+
+                        <div class="table-row">
+
+
+                            <span>
+
+                                {% if incident["student_number"] %}
+
+                                    {{ incident["student_number"] }}
+                                    -
+                                    {{ incident["first_name"] }}
+                                    {{ incident["last_name"] }}
+
+                                {% else %}
+
+                                    Unknown Student
+
+                                {% endif %}
+
+                            </span>
+
+
+                            <span>
+
+                                {% if incident["course_code"] %}
+
+                                    {{ incident["course_code"] }}
+
+                                {% else %}
+
+                                    Unknown Examination
+
+                                {% endif %}
+
+                            </span>
+
+
+                            <span>
+
+                                {{ incident["incident_type"] }}
+
+                            </span>
+
+
+                            <span>
+
+                                <span class="severity
+                                    {% if incident['severity'] == 'high' %}
+                                        high
+                                    {% elif incident['severity'] == 'medium' %}
+                                        medium
+                                    {% else %}
+                                        low
+                                    {% endif %}">
+
+                                    {{ incident["severity"]|capitalize }}
+
+                                </span>
+
+                            </span>
+
+
+                            <span class="incident-status
+                                {% if incident['status'] == 'resolved' %}
+                                    resolved
+                                {% endif %}">
+
+                                {{ incident["status"]|capitalize }}
+
+                            </span>
+
+
+                        </div>
+
+
+                    {% endfor %}
+
+
+                {% else %}
+
+
+                    <div class="table-row">
+
+                        <span>—</span>
+                        <span>—</span>
+                        <span>No incidents recorded</span>
+                        <span>—</span>
+
+                        <span class="incident-status resolved">
+                            Clear
+                        </span>
+
+                    </div>
+
+
+                {% endif %}
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- FOOTER -->
+
+        <footer class="dashboard-footer">
+
+            <span>
+                AI Examination Integrity System
+            </span>
+
+            <span>
+                Administrator Portal • 2026
+            </span>
+
+        </footer>
+
+
+    </main>
+
+
+</body>
+
+</html>

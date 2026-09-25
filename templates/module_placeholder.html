@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {{ page_title }} | AI Exam Integrity System
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body class="dashboard-page">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+
+        <div class="sidebar-logo">
+
+            <div class="dashboard-logo">
+                🎓
+            </div>
+
+            <div>
+
+                <h2>
+                    AI Exam Integrity
+                </h2>
+
+                <span>
+                    Administration
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="sidebar-nav">
+
+
+            <a href="{{ url_for('admin_dashboard') }}"
+               class="sidebar-link">
+
+                🏠
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a href="{{ url_for('admin_students') }}"
+               class="sidebar-link">
+
+                👨‍🎓
+
+                <span>
+                    Students
+                </span>
+
+            </a>
+
+
+            <a href="{{ url_for('admin_examinations') }}"
+               class="sidebar-link">
+
+                📝
+
+                <span>
+                    Examinations
+                </span>
+
+            </a>
+
+
+            <a href="{{ url_for('admin_invigilators') }}"
+               class="sidebar-link">
+
+                👨‍🏫
+
+                <span>
+                    Invigilators
+                </span>
+
+            </a>
+
+
+            <a href="{{ url_for('admin_incidents') }}"
+               class="sidebar-link">
+
+                🚨
+
+                <span>
+                    Incidents
+                </span>
+
+            </a>
+
+
+            <a href="{{ url_for('admin_reports') }}"
+               class="sidebar-link">
+
+                📊
+
+                <span>
+                    Reports & Analytics
+                </span>
+
+            </a>
+
+
+            <a href="{{ url_for('admin_ai_analysis') }}"
+               class="sidebar-link">
+
+                🤖
+
+                <span>
+                    AI Analysis
+                </span>
+
+            </a>
+
+
+            <a href="{{ url_for('admin_settings') }}"
+               class="sidebar-link">
+
+                ⚙️
+
+                <span>
+                    System Settings
+                </span>
+
+            </a>
+
+
+        </nav>
+
+
+        <!-- LOGOUT -->
+
+        <div class="sidebar-bottom">
+
+            <a href="{{ url_for('logout') }}"
+               class="logout-link">
+
+                🚪
+
+                <span>
+                    Logout
+                </span>
+
+            </a>
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="dashboard-main">
+
+
+        <header class="dashboard-header">
+
+
+            <div>
+
+                <h1>
+                    {{ page_icon }}
+                    {{ page_title }}
+                </h1>
+
+                <p>
+                    {{ page_description }}
+                </p>
+
+            </div>
+
+
+            <div class="admin-profile">
+
+
+                <div class="notification">
+                    🔔
+                </div>
+
+
+                <div class="profile-avatar">
+                    A
+                </div>
+
+
+                <div class="profile-info">
+
+                    <strong>
+                        {{ session["username"] }}
+                    </strong>
+
+                    <span>
+                        Administrator
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- COMING SOON CARD -->
+
+        <section class="dashboard-panel">
+
+
+            <div style="text-align: center; padding: 70px 20px;">
+
+
+                <div style="font-size: 60px; margin-bottom: 20px;">
+                    {{ page_icon }}
+                </div>
+
+
+                <h2 style="font-size: 25px; margin-bottom: 10px;">
+
+                    {{ page_title }}
+
+                </h2>
+
+
+                <p style="color: #64748b; margin-bottom: 25px;">
+
+                    {{ page_description }}
+
+                </p>
+
+
+                <div style="
+                    display: inline-block;
+                    padding: 10px 18px;
+                    border-radius: 20px;
+                    background: #eff6ff;
+                    color: #2563eb;
+                    font-size: 13px;
+                    font-weight: bold;
+                ">
+
+                    Module Coming Soon
+
+                </div>
+
+
+                <br><br>
+
+
+                <a href="{{ url_for('admin_dashboard') }}"
+                   style="
+                       color: #2563eb;
+                       text-decoration: none;
+                       font-size: 13px;
+                       font-weight: bold;
+                   ">
+
+                    ← Back to Dashboard
+
+                </a>
+
+
+            </div>
+
+
+        </section>
+
+
+        <footer class="dashboard-footer">
+
+            <span>
+                AI Examination Integrity System
+            </span>
+
+            <span>
+                Administrator Portal • 2026
+            </span>
+
+        </footer>
+
+
+    </main>
+
+
+</body>
+
+</html>

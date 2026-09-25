@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Management | AI Exam Integrity</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="sidebar-logo-icon">
+                🎓
+            </div>
+
+            <div>
+                <h2>AI Exam Integrity</h2>
+                <span>Admin Panel</span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="{{ url_for('admin_dashboard') }}"
+               class="sidebar-link">
+                <span>📊</span>
+                <span>Dashboard</span>
+            </a>
+
+
+            <a href="{{ url_for('admin_students') }}"
+               class="sidebar-link active">
+                <span>👨‍🎓</span>
+                <span>Students</span>
+            </a>
+
+
+            <a href="{{ url_for('admin_examinations') }}"
+               class="sidebar-link">
+                <span>📝</span>
+                <span>Examinations</span>
+            </a>
+
+
+            <a href="{{ url_for('admin_invigilators') }}"
+               class="sidebar-link">
+                <span>👨‍🏫</span>
+                <span>Invigilators</span>
+            </a>
+
+
+            <a href="{{ url_for('admin_incidents') }}"
+               class="sidebar-link">
+                <span>🚨</span>
+                <span>Incidents</span>
+            </a>
+
+
+            <a href="{{ url_for('admin_reports') }}"
+               class="sidebar-link">
+                <span>📊</span>
+                <span>Reports & Analytics</span>
+            </a>
+
+
+            <a href="{{ url_for('admin_ai_analysis') }}"
+               class="sidebar-link">
+                <span>🤖</span>
+                <span>AI Analysis</span>
+            </a>
+
+
+            <a href="{{ url_for('admin_settings') }}"
+               class="sidebar-link">
+                <span>⚙️</span>
+                <span>Settings</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="{{ url_for('logout') }}"
+               class="sidebar-link logout-link">
+                <span>🚪</span>
+                <span>Logout</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="dashboard-header">
+
+            <div>
+
+                <h1>Student Management</h1>
+
+                <p>
+                    Manage student records and examination information.
+                </p>
+
+            </div>
+
+
+            <div class="header-user">
+
+                <div class="user-avatar">
+                    👤
+                </div>
+
+                <div>
+
+                    <strong>
+                        {{ session.get('username', 'Administrator') }}
+                    </strong>
+
+                    <span>
+                        Administrator
+                    </span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= PAGE ACTIONS ================= -->
+
+        <section class="page-actions">
+
+            <div>
+
+                <h2>Students</h2>
+
+                <p>
+                    View and manage registered students.
+                </p>
+
+            </div>
+
+
+            <div class="student-actions">
+
+                <div class="search-box">
+
+                    <span>🔍</span>
+
+                    <input
+                        type="text"
+                        placeholder="Search students..."
+                        id="studentSearch"
+                    >
+
+                </div>
+
+
+                <a href="#"
+                   class="primary-button">
+                    ➕ Add Student
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= STUDENT TABLE ================= -->
+
+        <section class="content-card">
+
+            <div class="content-card-header">
+
+                <div>
+
+                    <h2>Registered Students</h2>
+
+                    <p>
+                        Students currently registered in the system.
+                    </p>
+
+                </div>
+
+
+                <div class="student-count">
+
+                    <strong>5</strong>
+
+                    <span>Total Students</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table class="data-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>#</th>
+
+                            <th>Student Number</th>
+
+                            <th>Student Name</th>
+
+                            <th>Course</th>
+
+                            <th>Year</th>
+
+                            <th>Status</th>
+
+                            <th>Actions</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>1</td>
+
+                            <td>
+                                <strong>STU001</strong>
+                            </td>
+
+                            <td>
+                                Brian Otieno
+                            </td>
+
+                            <td>
+                                Bachelor of Information Science
+                            </td>
+
+                            <td>
+                                Year 3
+                            </td>
+
+                            <td>
+                                <span class="status-badge active">
+                                    Active
+                                </span>
+                            </td>
+
+                            <td>
+
+                                <div class="table-actions">
+
+                                    <a href="#"
+                                       class="action-btn view-btn"
+                                       title="View Student">
+                                        👁️
+                                    </a>
+
+                                    <a href="#"
+                                       class="action-btn edit-btn"
+                                       title="Edit Student">
+                                        ✏️
+                                    </a>
+
+                                    <a href="#"
+                                       class="action-btn delete-btn"
+                                       title="Delete Student">
+                                        🗑️
+                                    </a>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>2</td>
+
+                            <td>
+                                <strong>STU002</strong>
+                            </td>
+
+                            <td>
+                                Mary Achieng
+                            </td>
+
+                            <td>
+                                Business Information Management
+                            </td>
+
+                            <td>
+                                Year 2
+                            </td>
+
+                            <td>
+                                <span class="status-badge active">
+                                    Active
+                                </span>
+                            </td>
+
+                            <td>
+
+                                <div class="table-actions">
+
+                                    <a href="#"
+                                       class="action-btn view-btn">
+                                        👁️
+                                    </a>
+
+                                    <a href="#"
+                                       class="action-btn edit-btn">
+                                        ✏️
+                                    </a>
+
+                                    <a href="#"
+                                       class="action-btn delete-btn">
+                                        🗑️
+                                    </a>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>3</td>
+
+                            <td>
+                                <strong>STU003</strong>
+                            </td>
+
+                            <td>
+                                David Omondi
+                            </td>
+
+                            <td>
+                                Computer Science
+                            </td>
+
+                            <td>
+                                Year 4
+                            </td>
+
+                            <td>
+                                <span class="status-badge active">
+                                    Active
+                                </span>
+                            </td>
+
+                            <td>
+
+                                <div class="table-actions">
+
+                                    <a href="#"
+                                       class="action-btn view-btn">
+                                        👁️
+                                    </a>
+
+                                    <a href="#"
+                                       class="action-btn edit-btn">
+                                        ✏️
+                                    </a>
+
+                                    <a href="#"
+                                       class="action-btn delete-btn">
+                                        🗑️
+                                    </a>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>4</td>
+
+                            <td>
+                                <strong>STU004</strong>
+                            </td>
+
+                            <td>
+                                Grace Atieno
+                            </td>
+
+                            <td>
+                                Information Technology
+                            </td>
+
+                            <td>
+                                Year 3
+                            </td>
+
+                            <td>
+                                <span class="status-badge active">
+                                    Active
+                                </span>
+                            </td>
+
+                            <td>
+
+                                <div class="table-actions">
+
+                                    <a href="#"
+                                       class="action-btn view-btn">
+                                        👁️
+                                    </a>
+
+                                    <a href="#"
+                                       class="action-btn edit-btn">
+                                        ✏️
+                                    </a>
+
+                                    <a href="#"
+                                       class="action-btn delete-btn">
+                                        🗑️
+                                    </a>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>5</td>
+
+                            <td>
+                                <strong>STU005</strong>
+                            </td>
+
+                            <td>
+                                Kevin Odhiambo
+                            </td>
+
+                            <td>
+                                Business Information Management
+                            </td>
+
+                            <td>
+                                Year 2
+                            </td>
+
+                            <td>
+                                <span class="status-badge active">
+                                    Active
+                                </span>
+                            </td>
+
+                            <td>
+
+                                <div class="table-actions">
+
+                                    <a href="#"
+                                       class="action-btn view-btn">
+                                        👁️
+                                    </a>
+
+                                    <a href="#"
+                                       class="action-btn edit-btn">
+                                        ✏️
+                                    </a>
+
+                                    <a href="#"
+                                       class="action-btn delete-btn">
+                                        🗑️
+                                    </a>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= INFORMATION ================= -->
+
+        <section class="info-card">
+
+            <div class="info-icon">
+                💡
+            </div>
+
+            <div>
+
+                <h3>Student Management</h3>
+
+                <p>
+                    From this section administrators will be able to
+                    register new students, update student information,
+                    view individual student records and manage
+                    examination-related student information.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FOOTER ================= -->
+
+        <footer class="dashboard-footer">
+
+            <p>
+                © 2026 AI Exam Integrity System
+            </p>
+
+            <p>
+                Secure • Fair • Transparent
+            </p>
+
+        </footer>
+
+    </main>
+
+</body>
+
+</html>
