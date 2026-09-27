@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Incidents — AI Exam Integrity System{% endblock %}
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1>Incidents</h1>
+        <p class="page-subtitle">{{ incidents|length }} logged incident(s)</p>
+    </div>
+    <a href="{{ url_for('add_incident') }}" class="btn btn-primary">+ Report Incident</a>
+</div>
+
+<div class="panel">
+    <table class="data-table">
+        <thead>
+            <tr><th>Student</th><th>Course</th><th>Type</th><th>Severity</th><th>Status</th><th>Reported</th><th>Actions</th></tr>
+        </thead>
+        <tbody>
+            {% for incident in incidents %}
+            <tr>
+                <td>{{ incident.first_name or 'Unknown' }} {{ incident.last_name or '' }}</td>
+                <td>{{ incident.course_code or '—' }}</td>
+                <td>{{ incident.incident_type }}</td>
+                <td><span class="badge badge-severity-{{ incident.severity }}">{{ incident.severity }}</span></td>
+                <td><span class="badge badge-{{ incident.status }}">{{ incident.status }}</span></td>
+                <td>{{ incident.reported_at }}</td>
+                <td class="actions-cell">
+                    {% if incident.status == 'open' %}
+                    <form method="POST" action="{{ url_for('resolve_incident', incident_id=incident.id) }}" class="inline-form">
+                        <button type="submit" class="btn btn-sm btn-success">Resolve</button>
+                    </form>
+                    {% endif %}
+                    <form method="POST" action="{{ url_for('delete_incident', incident_id=incident.id) }}" class="inline-form" onsubmit="return confirm('Delete this incident record?');">
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% else %}
+            <tr><td colspan="7" class="empty-row">No incidents reported yet.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

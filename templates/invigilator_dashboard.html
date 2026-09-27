@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}My Dashboard — AI Exam Integrity System{% endblock %}
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1>Welcome, {{ invigilator.first_name if invigilator else session.get('username') }}</h1>
+        <p class="page-subtitle">Your assigned examinations</p>
+    </div>
+    <a href="{{ url_for('add_incident') }}" class="btn btn-primary">Report Incident</a>
+</div>
+
+<div class="panel">
+    <table class="data-table">
+        <thead>
+            <tr><th>Course</th><th>Date</th><th>Time</th><th>Venue</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+            {% for exam in assigned_exams %}
+            <tr>
+                <td>{{ exam.course_code }} — {{ exam.examination_name }}</td>
+                <td>{{ exam.examination_date }}</td>
+                <td>{{ exam.start_time }}–{{ exam.end_time }}</td>
+                <td>{{ exam.venue }}</td>
+                <td><span class="badge badge-{{ exam.status }}">{{ exam.status }}</span></td>
+            </tr>
+            {% else %}
+            <tr><td colspan="5" class="empty-row">No examinations assigned to you yet.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

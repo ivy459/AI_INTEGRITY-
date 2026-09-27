@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}AI Analysis — AI Exam Integrity System{% endblock %}
+{% block content %}
+<div class="page-header">
+    <h1>AI Analysis</h1>
+    <p class="page-subtitle">Rule-based risk flagging from incident history</p>
+</div>
+
+<div class="panel info-panel">
+    <p><strong>How this works:</strong> each student's incident history is scanned and flagged using explainable rules —
+    <strong>Critical</strong> if they have any high-severity incident, <strong>High</strong> if they have 2 or more incidents of any severity,
+    otherwise <strong>Watch</strong>. This rule-based approach is a deliberate starting point: it's transparent and easy to justify in a presentation,
+    and is designed to be replaced or supplemented by a trained model later.</p>
+</div>
+
+<div class="panel">
+    <table class="data-table">
+        <thead>
+            <tr><th>Student</th><th>Total Incidents</th><th>High-Severity Incidents</th><th>Risk Level</th></tr>
+        </thead>
+        <tbody>
+            {% for item in flagged %}
+            <tr>
+                <td>{{ item.student_number }} — {{ item.name }}</td>
+                <td>{{ item.incident_count }}</td>
+                <td>{{ item.high_severity_count }}</td>
+                <td><span class="badge badge-risk-{{ item.risk_level|lower }}">{{ item.risk_level }}</span></td>
+            </tr>
+            {% else %}
+            <tr><td colspan="4" class="empty-row">No students have incident records yet.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

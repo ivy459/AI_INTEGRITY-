@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AI Exam Integrity System{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    {% if session.get('user_id') %}
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <span class="brand-icon"></span>
+                <span class="brand-text">Exam Integrity</span>
+            </div>
+            <nav class="sidebar-nav">
+                {% if session.get('role') == 'admin' %}
+                <a href="{{ url_for('admin_dashboard') }}" class="{{ 'active' if request.endpoint == 'admin_dashboard' }}">Dashboard</a>
+                <a href="{{ url_for('admin_students') }}" class="{{ 'active' if request.endpoint in ['admin_students','add_student','edit_student'] }}">Students</a>
+                <a href="{{ url_for('admin_examinations') }}" class="{{ 'active' if request.endpoint in ['admin_examinations','add_examination','edit_examination'] }}">Examinations</a>
+                <a href="{{ url_for('admin_invigilators') }}" class="{{ 'active' if request.endpoint in ['admin_invigilators','add_invigilator','edit_invigilator'] }}">Invigilators</a>
+                <a href="{{ url_for('admin_incidents') }}" class="{{ 'active' if request.endpoint in ['admin_incidents','add_incident'] }}">Incidents</a>
+                <a href="{{ url_for('admin_reports') }}" class="{{ 'active' if request.endpoint == 'admin_reports' }}">Reports</a>
+                <a href="{{ url_for('admin_ai_analysis') }}" class="{{ 'active' if request.endpoint == 'admin_ai_analysis' }}">AI Analysis</a>
+                <a href="{{ url_for('admin_settings') }}" class="{{ 'active' if request.endpoint == 'admin_settings' }}">Settings</a>
+                {% else %}
+                <a href="{{ url_for('invigilator_dashboard') }}" class="active">Dashboard</a>
+                <a href="{{ url_for('add_incident') }}">Report Incident</a>
+                {% endif %}
+            </nav>
+            <div class="sidebar-footer">
+                <div class="sidebar-user">{{ session.get('username') }}</div>
+                <a href="{{ url_for('logout') }}" class="logout-link">Sign out</a>
+            </div>
+        </aside>
+        <main class="main-content">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+    {% else %}
+        {% block bare_content %}{% endblock %}
+    {% endif %}
+</body>
+</html>
